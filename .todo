@@ -1,1 +1,35 @@
-install missing dependencies
+1. Dashboard (Dropdown with products)
+ - Binx AI
+ - CAMPUX
+ - PDFx
+
+2. Account Settings
+ - Profile Information
+ - Email & Password
+ - Notification Preferences
+ - Two-Factor Authentication
+
+3. Billing & Payments
+ - Active Plans
+ - Usage Summary
+ - Invoices & Payment History
+ - Payment Methods
+
+4. Support Center
+ - Help Articles / FAQs
+ - Open Ticket / Chat Support
+ - Ticket History
+
+5. Notifications
+ - System Alerts
+ - Product Updates
+ - Announcements
+
+6. Activity Log
+ - Login & Access History
+ - Product Actions Log
+
+7. API & Integrations (if applicable per product)
+ - API Keys
+ - Webhooks
+ - Connected Services

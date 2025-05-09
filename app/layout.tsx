@@ -2,7 +2,7 @@ import "./global.css";
 import { Toaster } from "sonner";
 import localFont from "next/font/local";
 import { AOS } from "./components/global";
-import { Montserrat } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 
 const geistSans = localFont({
@@ -16,10 +16,10 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const montserrat = Montserrat({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-montserrat",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-instrument-sans",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const viewport: Viewport = {
@@ -27,18 +27,18 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nextapptemplate.xyz"),
+  metadataBase: new URL("https://tekcify.com"),
   icons: {
     icon: "/icon.png",
   },
-  title: "nextjs template",
+  title: "Tekcify - Centralized Dashboard",
   description:
-    "I fell in love with next.js, im trying to make a template for it also",
-  applicationName: "next Web Application",
-  authors: [{ name: "nextapp template", url: "https://domainname.host" }],
-  keywords: ["NextJs", "reactjs", "template", "typescript"],
-  creator: "VickyJay",
-  publisher: "VickyJay",
+    "A centralized dashboard for managing Tekcify products including Binx AI, CAMPUX, and PDFx",
+  applicationName: "Tekcify Dashboard",
+  authors: [{ name: "Tekcify", url: "https://tekcify.com" }],
+  keywords: ["Tekcify", "Binx AI", "CAMPUX", "PDFx", "Dashboard", "SaaS"],
+  creator: "Tekcify",
+  publisher: "Tekcify",
   generator: "Next.js",
   referrer: "origin",
   robots: {
@@ -47,41 +47,39 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://domainname.host",
-    title: "Nextjs template",
-    siteName: "nextapp template",
+    url: "https://tekcify.com",
+    title: "Tekcify - Centralized Dashboard",
+    siteName: "Tekcify",
     locale: "en_US",
     images: [
       {
-        url: "linktoopengraphimage.cdn",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "next OG Image",
+        alt: "Tekcify Dashboard",
       },
     ],
   },
   twitter: {
-    site: "nextapp",
-    creator: "socialmediahandle",
-    title:
-      "nextapp template - I fell in love with next.js, im trying to make a template for it tooo",
+    site: "@tekcify",
+    creator: "@tekcify",
+    title: "Tekcify - Centralized Dashboard for All Products",
     description:
-      "I fell in love with next.js, im trying to make a template for it too",
+      "Manage Binx AI, CAMPUX, PDFx and more from a single dashboard",
     card: "summary_large_image",
-    images: ["linktoopengraph.com"],
+    images: ["/twitter-image.png"],
   },
   appleWebApp: {
     capable: true,
-    title: "nextapp template",
+    title: "Tekcify Dashboard",
     statusBarStyle: "black-translucent",
   },
   formatDetection: {
     telephone: false,
   },
-  abstract:
-    "I fell in love with next.js, im trying to make a template for it tooo",
-  category: "Social",
-  classification: "Social",
+  abstract: "A centralized dashboard for all Tekcify products and services",
+  category: "SaaS",
+  classification: "Technology",
 };
 
 export default function RootLayout({
@@ -92,7 +90,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${montserrat.className} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${instrumentSans.className} ${geistMono.variable} antialiased`}
       >
         <Toaster richColors />
         <AOS />

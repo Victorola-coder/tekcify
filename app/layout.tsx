@@ -1,7 +1,7 @@
 import "./global.css";
 import { Toaster } from "sonner";
 import localFont from "next/font/local";
-import { AOS } from "./components/global";
+import { AOS, ThemeProvider } from "./components/global";
 import { Instrument_Sans } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 
@@ -88,13 +88,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${instrumentSans.className} ${geistMono.variable} antialiased`}
       >
-        <Toaster richColors />
-        <AOS />
-        {children}
+        <ThemeProvider defaultTheme="system" storageKey="tekcify-theme">
+          <Toaster richColors />
+          <AOS />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -6,11 +6,13 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
         // if you are using variable and want to use more than one fonts for your webapp,you could define it here. like i did
         geistSans: ["var(--font-geist-sans)"],
+        instrumentSans: ["var(--font-instrument-sans)"],
       },
       keyframes: {
         "fade-effect": {
@@ -63,6 +65,8 @@ const config: Config = {
         "spin-slow": "spin 20s linear infinite",
       },
       colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
         primary: {
           DEFAULT: "#8434d4", // purple_heart
           100: "#8820a0", // seance

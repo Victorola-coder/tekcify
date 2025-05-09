@@ -1,3 +1,15 @@
+"use client";
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
+import { Splash } from "./components/global";
+
 export default function Home() {
-  return <div>Hello World</div>;
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      redirect("/signin");
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+  return <Splash />;
 }

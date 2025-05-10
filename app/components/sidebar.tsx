@@ -213,7 +213,7 @@ export default function Sidebar({ collapsed, toggleCollapse }: SidebarProps) {
 
   return (
     <div
-      className={`h-screen bg-background border-r border-seance/20 flex flex-col transition-all duration-300 ${
+      className={`h-screen bg-background border-r border-seance/20 flex flex-col transition-all duration-300 fixed z-40 ${
         collapsed ? "w-16" : "w-64"
       }`}
     >

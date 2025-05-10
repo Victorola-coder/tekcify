@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import TopNav from "@/app/components/topnav";
 import Sidebar from "@/app/components/sidebar";
 import MobileNav from "@/app/components/mobile-nav";
-import TopNav from "@/app/components/topnav";
 
 export default function UserboardLayout({
   children,
@@ -22,9 +22,9 @@ export default function UserboardLayout({
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex bg-background">
       {/* Sidebar - hidden on mobile, shown on desktop */}
-      <div className="hidden md:block">
+      <div className="hidden md:block z-40">
         <Sidebar
           collapsed={sidebarCollapsed}
           toggleCollapse={toggleSidebarCollapse}
@@ -46,7 +46,7 @@ export default function UserboardLayout({
       {/* Main content area */}
       <div
         className={`flex-1 flex flex-col transition-all duration-300 ${
-          sidebarCollapsed ? "md:ml-16" : "md:ml-0"
+          sidebarCollapsed ? "md:ml-16" : "md:ml-64"
         }`}
       >
         <MobileNav toggleSidebar={toggleMobileSidebar} />

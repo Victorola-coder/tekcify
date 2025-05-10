@@ -8,7 +8,7 @@ export default function TopNav() {
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   return (
-    <div className="h-16 border-b border-seance/20 bg-background/80 backdrop-blur-sm px-4 sm:px-6">
+    <div className="h-16 border-b border-seance/20 bg-background/80 backdrop-blur-sm px-4 sm:px-6 sticky top-0 z-30">
       <div className="h-full flex items-center justify-between">
         <div className="flex items-center gap-4">
           <h1 className="text-lg font-medium text-foreground hidden sm:block">

@@ -1,9 +1,6 @@
-import Navbar from "@/app/components/navbar";
-
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Navbar />
       <div className="container py-12 space-y-8">
         <section className="space-y-4">
           <h1 className="text-4xl font-bold text-foreground">

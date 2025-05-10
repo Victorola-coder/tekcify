@@ -18,7 +18,7 @@ export default function Splash() {
   }
 
   const logoSrc =
-    theme === "dark" ? "/images/brand/light.png" : "/images/brand/dark.png";
+    theme === "dark" ? "/images/brand/dark.png" : "/images/brand/white.png";
 
   return (
     <div className="w-full h-svh flex relative flex-col gap-5 items-center justify-center bg-gradient-to-r from-[#530CE2] to-[#17A3DA] text-white">

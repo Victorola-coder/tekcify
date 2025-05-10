@@ -7,7 +7,7 @@ export default function Home() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       redirect("/home");
-    }, 2000);
+    }, 4000);
 
     return () => clearTimeout(timeout);
   }, []);

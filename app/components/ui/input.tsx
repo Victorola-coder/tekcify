@@ -24,8 +24,8 @@ export default function Input({
             {...(props as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
             placeholder={placeholder}
             className={clsx(
-              "w-full bg-[#283142] p-4 rounded-[12px] text-white placeholder:text-[#FFFFFF80] font-aloe text-base leading-[22.4px] focus:outline-none focus:ring-0",
-              error && "border-1 border-red-500"
+              "w-full bg-background border border-seance/20 p-4 rounded-md text-foreground placeholder:text-foreground/50 text-base leading-[22.4px] focus:outline-none focus:ring-2 focus:ring-purpleHeart focus:border-transparent",
+              error && "border-red-500"
             )}
           />
         ) : (
@@ -35,25 +35,24 @@ export default function Input({
             placeholder={placeholder}
             autoComplete="off"
             className={clsx(
-              "w-full bg-[#283142] h-full p-4 rounded-[12px] text-white placeholder:text-[#FFFFFF80] font-aloe text-base leading-[22.4px] focus:outline-none focus:ring-0",
-              error && "border-1 border-red-500",
-              type === "password" && "pr-12"
+              "w-full bg-background border border-seance/20 h-full p-4 rounded-md text-foreground placeholder:text-foreground/50 text-base leading-[22.4px] focus:outline-none focus:ring-2 focus:ring-purpleHeart focus:border-transparent transition-colors",
+              error && "border-red-500",
+              type === "password" && "pr-12",
+              props.disabled && "opacity-70 cursor-not-allowed bg-foreground/5"
             )}
           />
         )}
         {type === "password" && (
           <span
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-[#FFFFFF80] hover:text-white transition-colors"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/50 hover:text-foreground transition-colors cursor-pointer"
           >
-            <EyeIcon fill={showPassword ? "white" : "#FFFFFF80"} />
+            <EyeIcon fill={showPassword ? "currentColor" : "currentColor"} />
           </span>
         )}
       </div>
       {error && (
-        <p className="text-red-500 font-aloe text-xs leading-[22.4px] mt-1">
-          {error}
-        </p>
+        <p className="text-red-500 text-xs leading-[22.4px] mt-1">{error}</p>
       )}
     </fieldset>
   );

@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./global";
+import { usePathname } from "next/navigation";
 
 interface SidebarItem {
   title: string;

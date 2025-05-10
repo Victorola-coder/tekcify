@@ -377,7 +377,7 @@ export default function Sidebar({ collapsed, toggleCollapse }: SidebarProps) {
             </svg>
           </button>
         )}
-        <div className="hidden md:block">
+        <div className="hidden md:block_">
           <ThemeToggle />
         </div>
       </div>

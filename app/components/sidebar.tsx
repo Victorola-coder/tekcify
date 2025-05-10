@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { ThemeToggle } from "./global";
+import { ThemeToggle, useTheme } from "./global";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { Image } from "./ui";
 
 interface SidebarItem {
   title: string;
@@ -20,6 +21,16 @@ interface SidebarProps {
 export default function Sidebar({ collapsed, toggleCollapse }: SidebarProps) {
   const pathname = usePathname();
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   const toggleSubmenu = (title: string) => {
     if (openSubmenu === title) {
@@ -28,6 +39,9 @@ export default function Sidebar({ collapsed, toggleCollapse }: SidebarProps) {
       setOpenSubmenu(title);
     }
   };
+
+  const logoSrc =
+    theme === "dark" ? "/images/brand/dark.png" : "/images/brand/light.png";
 
   const sidebarItems: SidebarItem[] = [
     {
@@ -220,20 +234,8 @@ export default function Sidebar({ collapsed, toggleCollapse }: SidebarProps) {
       <div className="p-4 border-b border-seance/20 flex items-center justify-between">
         {!collapsed && (
           <Link href="/" className="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-8 w-8 text-purpleHeart"
-            >
-              <path
-                d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <img src={logoSrc} alt="Tekcify" className="size-10" />
+
             <span className="text-xl font-bold text-foreground">Tekcify</span>
           </Link>
         )}

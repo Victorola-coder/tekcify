@@ -6,7 +6,7 @@ import { Splash } from "./components/global";
 export default function Home() {
   useEffect(() => {
     const timeout = setTimeout(() => {
-      redirect("/home");
+      redirect("/dashboard");
     }, 2000);
 
     return () => clearTimeout(timeout);

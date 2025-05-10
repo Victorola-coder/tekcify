@@ -32,7 +32,7 @@ export default function Sidebar({ collapsed, toggleCollapse }: SidebarProps) {
   const sidebarItems: SidebarItem[] = [
     {
       title: "Dashboard",
-      href: "/home",
+      href: "/dashboard",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -52,9 +52,9 @@ export default function Sidebar({ collapsed, toggleCollapse }: SidebarProps) {
         </svg>
       ),
       submenu: [
-        { title: "Binx AI", href: "/home/binx" },
-        { title: "CAMPUX", href: "/home/campux" },
-        { title: "PDFx", href: "/home/pdfx" },
+        { title: "Binx AI", href: "/dashboard/binx" },
+        { title: "CAMPUX", href: "/dashboard/campux" },
+        { title: "PDFx", href: "/dashboard/pdfx" },
       ],
     },
     {

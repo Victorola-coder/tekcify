@@ -43,7 +43,7 @@ export default function Home() {
                 Active
               </span>
               <a
-                href="/home/binx"
+                href="/dashboard/binx"
                 className="text-sm text-purpleHeart hover:text-purpleHeart/80 font-medium flex items-center gap-1"
               >
                 Manage
@@ -92,7 +92,7 @@ export default function Home() {
                 Active
               </span>
               <a
-                href="/home/campux"
+                href="/dashboard/campux"
                 className="text-sm text-purpleHeart hover:text-purpleHeart/80 font-medium flex items-center gap-1"
               >
                 Manage
@@ -141,7 +141,7 @@ export default function Home() {
                 Active
               </span>
               <a
-                href="/home/pdfx"
+                href="/dashboard/pdfx"
                 className="text-sm text-purpleHeart hover:text-purpleHeart/80 font-medium flex items-center gap-1"
               >
                 Manage

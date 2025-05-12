@@ -441,19 +441,19 @@ export default function ContactSupportPage() {
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-foreground">Urgent:</span>
-                <span className="text-foreground/70">< 2 hours</span>
+                <span className="text-foreground/70">&lt; 2 hours</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-foreground">High:</span>
-                <span className="text-foreground/70">< 4 hours</span>
+                <span className="text-foreground/70">&lt; 4 hours</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-foreground">Normal:</span>
-                <span className="text-foreground/70">< 24 hours</span>
+                <span className="text-foreground/70">&lt; 24 hours</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-foreground">Low:</span>
-                <span className="text-foreground/70">< 48 hours</span>
+                <span className="text-foreground/70">&lt; 48 hours</span>
               </div>
             </div>
           </Card>

@@ -273,7 +273,7 @@ export default function Sidebar({ collapsed, toggleCollapse }: SidebarProps) {
             strokeLinecap="round"
             strokeLinejoin="round"
             className={`transform transition-transform ${
-              collapsed ? "rotate-180" : ""
+              collapsed ? "rotate-90" : ""
             }`}
           >
             <path d="m15 18-6-6 6-6" />

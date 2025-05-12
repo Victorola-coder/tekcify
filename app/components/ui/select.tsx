@@ -53,7 +53,7 @@ export default function Select({
         <span>{selectedLabel}</span>
         <svg
           className={`size-3 md:size-4 transition-transform ${
-            isOpen ? "rotate-180" : ""
+            isOpen ? "rotate-90" : ""
           }`}
           fill="none"
           stroke="currentColor"
@@ -63,7 +63,7 @@ export default function Select({
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d="M19 9l-7 7-7-7"
+            d="M9 18l6-6-6-6"
           />
         </svg>
       </button>

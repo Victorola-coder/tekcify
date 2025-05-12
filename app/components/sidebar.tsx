@@ -309,10 +309,10 @@ export default function Sidebar({ collapsed, toggleCollapse }: SidebarProps) {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className={`transition-transform ${
-                      openSubmenu === item.title ? "rotate-180" : ""
+                      openSubmenu === item.title ? "rotate-90" : ""
                     }`}
                   >
-                    <polyline points="6 9 12 15 18 9" />
+                    <path d="m9 18 6-6-6-6" />
                   </svg>
                 )}
               </button>

@@ -14,30 +14,32 @@ export default function TopNav() {
           <h1 className="text-lg font-medium text-foreground hidden sm:block">
             Dashboard
           </h1>
-          <div className="relative w-64 hidden md:block">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-foreground/50"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-            </div>
-            <input
-              type="search"
-              placeholder="Search..."
-              className="w-full pl-10 pr-4 py-1.5 bg-background border border-seance/20 rounded-md focus:outline-none focus:ring-1 focus:ring-purpleHeart focus:border-purpleHeart text-sm text-foreground"
-            />
+        </div>
+
+        {/* Centered search input */}
+        <div className="relative w-64 md:w-80 mx-auto">
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-foreground/50"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
           </div>
+          <input
+            type="search"
+            placeholder="Search..."
+            className="w-full pl-10 pr-4 py-1.5 bg-background border border-seance/20 rounded-md focus:outline-none focus:ring-1 focus:ring-purpleHeart focus:border-purpleHeart text-sm text-foreground"
+          />
         </div>
 
         <div className="flex items-center gap-3">
@@ -93,7 +95,7 @@ export default function TopNav() {
             </button>
 
             {showUserMenu && (
-              <div className="absolute right-0 mt-2 w-48 bg-background border border-seance/20 rounded-md shadow-lg py-1 z-50">
+              <div className="absolute right-0 mt-2 w-48 bg-background border border-seance/20 rounded-md py-1 z-50">
                 <Link
                   href="/account/profile"
                   className="block px-4 py-2 text-sm text-foreground hover:bg-seance/10"

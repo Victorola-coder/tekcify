@@ -13,7 +13,7 @@ export default function Home() {
       <section>
         <h2 className="text-xl font-semibold text-foreground mb-4">Products</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-background border border-seance/20 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <div className="bg-background border border-seance/20 p-6 rounded-lg transition-colors">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold text-foreground">Binx AI</h2>
               <svg
@@ -64,7 +64,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-background border border-seance/20 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <div className="bg-background border border-seance/20 p-6 rounded-lg transition-colors">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold text-foreground">CAMPUX</h2>
               <svg
@@ -113,7 +113,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-background border border-seance/20 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <div className="bg-background border border-seance/20 p-6 rounded-lg transition-colors">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold text-foreground">PDFx</h2>
               <svg
@@ -165,7 +165,7 @@ export default function Home() {
       </section>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <section className="bg-background border border-seance/20 p-6 rounded-lg shadow-sm">
+        <section className="bg-background border border-seance/20 p-6 rounded-lg">
           <h2 className="text-xl font-bold text-foreground mb-4">
             Recent Activity
           </h2>
@@ -263,7 +263,7 @@ export default function Home() {
           </a>
         </section>
 
-        <section className="bg-background border border-seance/20 p-6 rounded-lg shadow-sm">
+        <section className="bg-background border border-seance/20 p-6 rounded-lg">
           <h2 className="text-xl font-bold text-foreground mb-4">
             Usage Summary
           </h2>

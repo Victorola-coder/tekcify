@@ -266,7 +266,7 @@ export default function ProfilePage() {
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
-                <button className="absolute bottom-0 right-0 bg-purpleHeart text-white rounded-full p-2 shadow-lg hover:bg-purpleHeart/90 transition-colors">
+                <button className="absolute bottom-0 right-0 bg-purpleHeart text-white rounded-full p-2 hover:bg-purpleHeart/90 transition-colors">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"

@@ -192,7 +192,7 @@ export default function SupportPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {supportCategories.map((category, index) => (
           <Link href={category.href} key={index}>
-            <Card className="p-6 border border-seance/20 hover:border-seance/30 hover:shadow-md transition-all duration-200">
+            <Card className="p-6 border border-seance/20 hover:border-seance/30 transition-all duration-200">
               <div className="flex flex-col items-center text-center gap-4">
                 <div className="p-3 rounded-full bg-background border border-seance/20">
                   {category.icon}

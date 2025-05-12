@@ -27,6 +27,8 @@ export default function NotificationsPage() {
   });
 
   const [notificationFrequency, setNotificationFrequency] = useState("daily");
+  const [browserNotifications, setBrowserNotifications] = useState(true);
+  const [mobileNotifications, setMobileNotifications] = useState(true);
 
   // Handle toggle change for email preferences
   const handleEmailToggle = (setting: keyof typeof emailPreferences) => {
@@ -51,6 +53,8 @@ export default function NotificationsPage() {
     console.log("Email preferences saved:", emailPreferences);
     console.log("Push preferences saved:", pushPreferences);
     console.log("Notification frequency:", notificationFrequency);
+    console.log("Browser notifications:", browserNotifications);
+    console.log("Mobile notifications:", mobileNotifications);
     // Show success message or handle errors
   };
 
@@ -308,7 +312,10 @@ export default function NotificationsPage() {
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
                       type="checkbox"
-                      checked={true}
+                      checked={browserNotifications}
+                      onChange={() =>
+                        setBrowserNotifications(!browserNotifications)
+                      }
                       className="sr-only peer"
                     />
                     <div className="w-9 h-5 bg-foreground/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-purpleHeart"></div>
@@ -319,7 +326,10 @@ export default function NotificationsPage() {
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
                       type="checkbox"
-                      checked={true}
+                      checked={mobileNotifications}
+                      onChange={() =>
+                        setMobileNotifications(!mobileNotifications)
+                      }
                       className="sr-only peer"
                     />
                     <div className="w-9 h-5 bg-foreground/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-purpleHeart"></div>

@@ -1,113 +1,105 @@
 "use client";
 
-import { Card, Button } from "@/app/components/ui";
-import Link from "next/link";
+import { useState } from "react";
+import { Button, Card } from "@/app/components/ui";
 
 export default function UsageSummaryPage() {
+  // Date range state
+  const [dateRange, setDateRange] = useState("30days");
+
+  // Billing cycle
+  const billingCycle = {
+    start: "June 1, 2023",
+    end: "June 30, 2023",
+  };
+
   // Product usage data
-  const products = [
+  const productUsage = [
     {
+      id: "binx-ai",
       name: "Binx AI",
+      usage: 78,
+      limit: 100,
+      unit: "API hours",
       metrics: [
+        { name: "API Calls", value: "15,420", change: "+12.3%", trend: "up" },
         {
-          name: "API Tokens",
-          used: 780000,
-          limit: 1000000,
-          percentage: 78,
-          resetDate: "July 22, 2023",
+          name: "Processing Time",
+          value: "78 hrs",
+          change: "-5.2%",
+          trend: "down",
         },
-        {
-          name: "Storage",
-          used: 2.8,
-          limit: 5,
-          unit: "GB",
-          percentage: 56,
-          resetDate: "July 22, 2023",
-        },
+        { name: "Models Used", value: "4", change: "+1", trend: "up" },
       ],
     },
     {
+      id: "campux",
       name: "CAMPUX",
+      usage: 42,
+      limit: 100,
+      unit: "GB Storage",
       metrics: [
-        {
-          name: "Active Users",
-          used: 45,
-          limit: 50,
-          percentage: 90,
-          resetDate: "N/A",
-        },
-        {
-          name: "Storage",
-          used: 18.5,
-          limit: 25,
-          unit: "GB",
-          percentage: 74,
-          resetDate: "N/A",
-        },
+        { name: "Active Students", value: "156", change: "+23", trend: "up" },
+        { name: "Storage Used", value: "42 GB", change: "+8.7%", trend: "up" },
+        { name: "Courses", value: "12", change: "+2", trend: "up" },
       ],
     },
     {
+      id: "pdfx",
       name: "PDFx",
+      usage: 65,
+      limit: 100,
+      unit: "GB Processed",
       metrics: [
         {
-          name: "Documents",
-          used: 342,
-          limit: 500,
-          percentage: 68,
-          resetDate: "N/A",
+          name: "Documents Processed",
+          value: "342",
+          change: "+15.3%",
+          trend: "up",
         },
-        {
-          name: "Storage",
-          used: 4.2,
-          limit: 10,
-          unit: "GB",
-          percentage: 42,
-          resetDate: "N/A",
-        },
-        {
-          name: "OCR Processing",
-          used: 156,
-          limit: 200,
-          unit: "pages",
-          percentage: 78,
-          resetDate: "July 22, 2023",
-        },
+        { name: "Storage Used", value: "65 GB", change: "+5.1%", trend: "up" },
+        { name: "OCR Pages", value: "1,245", change: "+10.2%", trend: "up" },
       ],
     },
   ];
 
-  // Usage history data for chart
+  // Sample usage history data (for chart)
   const usageHistory = [
-    { month: "Jan", binx: 45, campux: 62, pdfx: 38 },
-    { month: "Feb", binx: 52, campux: 58, pdfx: 42 },
-    { month: "Mar", binx: 48, campux: 65, pdfx: 50 },
-    { month: "Apr", binx: 61, campux: 68, pdfx: 55 },
-    { month: "May", binx: 65, campux: 72, pdfx: 60 },
-    { month: "Jun", binx: 78, campux: 90, pdfx: 68 },
+    { date: "May 1", binx: 45, campux: 30, pdfx: 50 },
+    { date: "May 8", binx: 50, campux: 32, pdfx: 53 },
+    { date: "May 15", binx: 60, campux: 35, pdfx: 55 },
+    { date: "May 22", binx: 65, campux: 38, pdfx: 58 },
+    { date: "May 29", binx: 70, campux: 40, pdfx: 60 },
+    { date: "Jun 5", binx: 73, campux: 41, pdfx: 62 },
+    { date: "Jun 12", binx: 75, campux: 42, pdfx: 63 },
+    { date: "Jun 19", binx: 78, campux: 42, pdfx: 65 },
   ];
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-foreground">
             Usage Summary
           </h1>
           <p className="text-foreground/70 mt-1">
-            Monitor your resource usage across all products
+            Monitor your product usage and billing data
           </p>
         </div>
         <div className="flex gap-3">
-          <select className="px-3 py-2 border border-seance/20 rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-purpleHeart focus:border-transparent">
-            <option>Current Billing Cycle</option>
-            <option>Last Billing Cycle</option>
-            <option>Last 3 Months</option>
-            <option>Last 6 Months</option>
-            <option>Last 12 Months</option>
+          <select
+            value={dateRange}
+            onChange={(e) => setDateRange(e.target.value)}
+            className="px-3 py-2 border border-seance/20 rounded-md bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-purpleHeart"
+          >
+            <option value="30days">Last 30 Days</option>
+            <option value="90days">Last 90 Days</option>
+            <option value="6months">Last 6 Months</option>
+            <option value="12months">Last 12 Months</option>
           </select>
           <Button
             variant="outline"
-            className="border-seance/20 text-foreground hidden sm:flex"
+            className="border-seance/20 text-foreground"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -130,87 +122,199 @@ export default function UsageSummaryPage() {
         </div>
       </div>
 
-      {/* Usage Overview Chart */}
       <Card className="border border-seance/20 p-6">
-        <h2 className="text-xl font-semibold text-foreground mb-6">
-          Usage Overview
-        </h2>
-
-        {/* Placeholder for chart */}
-        <div className="bg-seance/5 rounded-lg h-72 flex items-center justify-center">
-          <div className="text-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="48"
-              height="48"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mx-auto text-seance/40 mb-2"
-            >
-              <line x1="12" x2="12" y1="20" y2="10" />
-              <line x1="18" x2="18" y1="20" y2="4" />
-              <line x1="6" x2="6" y1="20" y2="16" />
-            </svg>
-            <p className="text-foreground/70 text-sm">
-              Monthly usage across all products
-            </p>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+          <h2 className="text-xl font-semibold text-foreground">
+            Current Billing Cycle
+          </h2>
+          <div className="text-sm text-foreground/70">
+            {billingCycle.start} - {billingCycle.end}
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-          {usageHistory.length > 0 && (
-            <>
-              <div>
-                <p className="text-foreground/70 text-sm">Binx AI</p>
-                <div className="flex items-center justify-center gap-2 mt-1">
-                  <div className="w-3 h-3 rounded-full bg-purpleHeart"></div>
-                  <p className="text-lg font-medium text-foreground">
-                    {usageHistory[usageHistory.length - 1].binx}%
-                  </p>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {productUsage.map((product) => (
+            <div key={product.id} className="space-y-3">
+              <div className="flex justify-between items-center">
+                <h3 className="font-medium text-foreground">{product.name}</h3>
+                <span className="text-sm text-foreground/70">
+                  {product.usage}% of {product.limit} {product.unit}
+                </span>
               </div>
-              <div>
-                <p className="text-foreground/70 text-sm">CAMPUX</p>
-                <div className="flex items-center justify-center gap-2 mt-1">
-                  <div className="w-3 h-3 rounded-full bg-seance"></div>
-                  <p className="text-lg font-medium text-foreground">
-                    {usageHistory[usageHistory.length - 1].campux}%
-                  </p>
-                </div>
+              <div className="w-full bg-seance/10 rounded-full h-2.5">
+                <div
+                  className={`h-2.5 rounded-full ${
+                    product.usage > 90
+                      ? "bg-red-500"
+                      : product.usage > 75
+                      ? "bg-orange-500"
+                      : "bg-purpleHeart"
+                  }`}
+                  style={{ width: `${product.usage}%` }}
+                ></div>
               </div>
-              <div>
-                <p className="text-foreground/70 text-sm">PDFx</p>
-                <div className="flex items-center justify-center gap-2 mt-1">
-                  <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                  <p className="text-lg font-medium text-foreground">
-                    {usageHistory[usageHistory.length - 1].pdfx}%
-                  </p>
-                </div>
+              <div className="grid grid-cols-3 gap-2 pt-2">
+                {product.metrics.map((metric, idx) => (
+                  <div key={idx} className="text-center">
+                    <p className="text-xs text-foreground/70">{metric.name}</p>
+                    <p className="text-base font-medium text-foreground">
+                      {metric.value}
+                    </p>
+                    <p
+                      className={`text-xs ${
+                        metric.trend === "up"
+                          ? metric.name === "Processing Time"
+                            ? "text-red-500"
+                            : "text-green-500"
+                          : metric.name === "Processing Time"
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }`}
+                    >
+                      {metric.change}
+                    </p>
+                  </div>
+                ))}
               </div>
-            </>
-          )}
+            </div>
+          ))}
         </div>
       </Card>
 
-      {/* Product Usage */}
-      <div className="space-y-6">
-        {products.map((product, productIndex) => (
-          <Card key={productIndex} className="border border-seance/20 p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-semibold text-foreground">
-                {product.name}
-              </h2>
-              <Link
-                href={`/billing/usage/${product.name
-                  .toLowerCase()
-                  .replace(" ", "-")}`}
-                className="text-sm text-purpleHeart hover:text-purpleHeart/80 flex items-center gap-1"
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-2">
+          <Card className="border border-seance/20 p-6">
+            <h2 className="text-xl font-semibold text-foreground mb-6">
+              Usage Trends
+            </h2>
+            <div className="h-80 relative">
+              {/* This is a placeholder for a chart - in a real app, you'd use a charting library */}
+              <div className="absolute inset-0 bg-seance/5 rounded-lg flex items-center justify-center">
+                <div className="space-y-6 w-full px-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 rounded-full bg-purpleHeart mr-2"></div>
+                      <span className="text-sm text-foreground">Binx AI</span>
+                    </div>
+                    <div className="w-full bg-seance/10 rounded-full h-2">
+                      <div
+                        className="bg-purpleHeart h-2 rounded-full"
+                        style={{ width: "78%" }}
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 rounded-full bg-seance mr-2"></div>
+                      <span className="text-sm text-foreground">CAMPUX</span>
+                    </div>
+                    <div className="w-full bg-seance/10 rounded-full h-2">
+                      <div
+                        className="bg-seance h-2 rounded-full"
+                        style={{ width: "42%" }}
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
+                      <span className="text-sm text-foreground">PDFx</span>
+                    </div>
+                    <div className="w-full bg-seance/10 rounded-full h-2">
+                      <div
+                        className="bg-blue-500 h-2 rounded-full"
+                        style={{ width: "65%" }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between mt-4 pt-4 border-t border-seance/20">
+              <div className="text-sm text-foreground/70">
+                {usageHistory[0].date} -{" "}
+                {usageHistory[usageHistory.length - 1].date}
+              </div>
+              <div className="flex gap-2">
+                <button className="text-sm text-foreground/70 hover:text-foreground font-medium">
+                  Daily
+                </button>
+                <button className="text-sm text-foreground font-medium">
+                  Weekly
+                </button>
+                <button className="text-sm text-foreground/70 hover:text-foreground font-medium">
+                  Monthly
+                </button>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        <div>
+          <Card className="border border-seance/20 p-6">
+            <h2 className="text-xl font-semibold text-foreground mb-4">
+              Current Plan
+            </h2>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <p className="text-lg font-semibold text-foreground">
+                  Pro Plan
+                </p>
+                <p className="text-sm text-foreground/70">$29 / month</p>
+              </div>
+              <Button
+                variant="outline"
+                className="border-seance/20 text-foreground text-sm"
+                onClick={() => (window.location.href = "/billing/plans")}
               >
-                View Details
+                Change
+              </Button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <div className="flex justify-between items-center mb-1">
+                  <p className="text-sm text-foreground/70">
+                    Next billing date
+                  </p>
+                  <p className="text-sm font-medium text-foreground">
+                    July 1, 2023
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between items-center mb-1">
+                  <p className="text-sm text-foreground/70">
+                    Current bill estimate
+                  </p>
+                  <p className="text-sm font-medium text-foreground">$29.00</p>
+                </div>
+                <div className="text-xs text-foreground/70">
+                  No additional usage charges for current period
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 pt-4 border-t border-seance/20">
+              <Button
+                className="w-full bg-purpleHeart hover:bg-purpleHeart/90 text-white"
+                onClick={() => (window.location.href = "/billing/invoices")}
+              >
+                View Billing History
+              </Button>
+            </div>
+          </Card>
+
+          <Card className="border border-seance/20 p-6 mt-6">
+            <h2 className="text-xl font-semibold text-foreground mb-4">
+              Usage Tips
+            </h2>
+            <ul className="space-y-3 text-sm text-foreground/70">
+              <li className="flex items-start gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -221,138 +325,210 @@ export default function UsageSummaryPage() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  className="text-purpleHeart mt-0.5"
                 >
-                  <path d="m9 18 6-6-6-6" />
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="m15 9-6 6" />
+                  <path d="m9 9 6 6" />
                 </svg>
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {product.metrics.map((metric, metricIndex) => (
-                <div key={metricIndex}>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm font-medium text-foreground">
-                      {metric.name}
-                    </span>
-                    <span className="text-sm text-foreground/70">
-                      {metric.percentage}%
-                    </span>
-                  </div>
-                  <div className="w-full bg-seance/10 rounded-full h-2">
-                    <div
-                      className={`h-2 rounded-full ${
-                        metric.percentage > 85
-                          ? "bg-red-500"
-                          : metric.percentage > 70
-                          ? "bg-yellow-500"
-                          : "bg-purpleHeart"
-                      }`}
-                      style={{ width: `${metric.percentage}%` }}
-                    ></div>
-                  </div>
-                  <div className="flex justify-between mt-1 text-xs text-foreground/70">
-                    <span>
-                      {metric.used.toLocaleString()}{" "}
-                      {metric.unit ? metric.unit : ""} /{" "}
-                      {metric.limit.toLocaleString()}{" "}
-                      {metric.unit ? metric.unit : ""}
-                    </span>
-                    {metric.resetDate !== "N/A" && (
-                      <span>Resets on {metric.resetDate}</span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 border-t border-seance/20 pt-4">
-              <div className="flex flex-wrap justify-between items-center">
-                <div className="space-y-1">
-                  <p className="text-sm font-medium text-foreground">
-                    Current Plan
-                  </p>
-                  <p className="text-sm text-foreground/70">
-                    {product.name === "Binx AI"
-                      ? "Pro Plan - $29.99/month"
-                      : product.name === "CAMPUX"
-                      ? "Business Plan - $99.99/month"
-                      : "Basic Plan - $9.99/month"}
-                  </p>
-                </div>
-                <Button
-                  variant="outline"
-                  className="border-seance/20 text-foreground mt-2 sm:mt-0"
+                <span>
+                  You're approaching your storage limit on PDFx. Consider
+                  deleting unused documents.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-purpleHeart mt-0.5"
                 >
-                  Upgrade Plan
-                </Button>
-              </div>
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="m15 9-6 6" />
+                  <path d="m9 9 6 6" />
+                </svg>
+                <span>
+                  Set up usage alerts to get notified when you're approaching
+                  your limits.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-purpleHeart mt-0.5"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="m15 9-6 6" />
+                  <path d="m9 9 6 6" />
+                </svg>
+                <span>
+                  Consider upgrading to the Enterprise plan for unlimited API
+                  usage.
+                </span>
+              </li>
+            </ul>
+            <div className="mt-4 pt-4 border-t border-seance/20">
+              <Button
+                variant="outline"
+                className="w-full border-seance/20 text-foreground"
+                onClick={() => (window.location.href = "/support/help")}
+              >
+                View Usage Best Practices
+              </Button>
             </div>
           </Card>
-        ))}
+        </div>
       </div>
 
-      {/* Historical Data */}
       <Card className="border border-seance/20 p-6">
         <h2 className="text-xl font-semibold text-foreground mb-6">
-          Historical Usage
+          API Usage Details
         </h2>
-
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-seance/20">
             <thead>
               <tr>
                 <th className="px-4 py-3 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">
-                  Month
+                  Product
                 </th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">
-                  Binx AI
+                  Endpoint
                 </th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">
-                  CAMPUX
+                  Requests
                 </th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">
-                  PDFx
+                  Average Time
                 </th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">
-                  Total Usage
+                  Status
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-seance/20">
-              {usageHistory.map((month, index) => (
-                <tr key={index}>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-foreground">
-                    {month.month} 2023
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-foreground">
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 rounded-full bg-purpleHeart mr-2"></div>
-                      {month.binx}%
-                    </div>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-foreground">
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 rounded-full bg-seance mr-2"></div>
-                      {month.campux}%
-                    </div>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-foreground">
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
-                      {month.pdfx}%
-                    </div>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-foreground">
-                    {((month.binx + month.campux + month.pdfx) / 3).toFixed(1)}%
-                  </td>
-                </tr>
-              ))}
+              <tr>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 rounded-full bg-purpleHeart mr-2"></div>
+                    <span className="text-sm font-medium text-foreground">
+                      Binx AI
+                    </span>
+                  </div>
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  /api/completions
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  8,240
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  245ms
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    Healthy
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 rounded-full bg-purpleHeart mr-2"></div>
+                    <span className="text-sm font-medium text-foreground">
+                      Binx AI
+                    </span>
+                  </div>
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  /api/embeddings
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  4,320
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  120ms
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    Healthy
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 rounded-full bg-seance mr-2"></div>
+                    <span className="text-sm font-medium text-foreground">
+                      CAMPUX
+                    </span>
+                  </div>
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  /api/courses
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  1,560
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  187ms
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    Healthy
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+                    <span className="text-sm font-medium text-foreground">
+                      PDFx
+                    </span>
+                  </div>
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  /api/document-process
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  3,120
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-foreground">
+                  780ms
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                    Degraded
+                  </span>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
+        <div className="mt-4 text-sm text-right">
+          <a
+            href="/api/services"
+            className="text-purpleHeart hover:text-purpleHeart/80"
+          >
+            View API Services Status →
+          </a>
+        </div>
       </Card>
 
-      {/* Resource Usage Optimization Tips */}
       <Card className="border border-seance/20 p-6 bg-seance/5">
         <div className="flex items-start gap-4">
           <div className="p-3 rounded-full bg-background border border-seance/20">
@@ -368,40 +544,26 @@ export default function UsageSummaryPage() {
               strokeLinejoin="round"
               className="text-purpleHeart"
             >
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 16v-4" />
-              <path d="M12 8h.01" />
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
           </div>
           <div>
             <h3 className="text-lg font-medium text-foreground mb-2">
-              Optimize Your Usage
+              Need to add team members?
             </h3>
-            <p className="text-sm text-foreground/70 mb-4">
-              Here are some tips to help you optimize your resource usage and
-              avoid additional charges:
+            <p className="text-sm text-foreground/70">
+              Upgrade to a team plan to add additional users and manage
+              permissions across your organization.
             </p>
-            <ul className="list-disc list-inside text-sm text-foreground/70 space-y-1">
-              <li>
-                Use Binx AI's compression feature to reduce token consumption
-              </li>
-              <li>
-                Archive older CAMPUX courses that are no longer active to free
-                up storage
-              </li>
-              <li>
-                Configure PDFx to use lower resolution for documents that don't
-                require high quality
-              </li>
-              <li>
-                Set up usage alerts to be notified when approaching limits
-              </li>
-            </ul>
-            <div className="mt-4">
-              <Button className="bg-purpleHeart hover:bg-purpleHeart/90 text-white">
-                Set Usage Alerts
-              </Button>
-            </div>
+            <Button
+              className="mt-4 bg-purpleHeart hover:bg-purpleHeart/90 text-white"
+              onClick={() => (window.location.href = "/billing/plans")}
+            >
+              Explore Team Plans
+            </Button>
           </div>
         </div>
       </Card>

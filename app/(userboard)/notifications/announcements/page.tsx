@@ -115,13 +115,17 @@ export default function AnnouncementsPage() {
   });
 
   // Format date
-  const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "short", day: "numeric" };
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
   // Get icon based on announcement type
-  const getIcon = (type) => {
+  const getIcon = (type: string) => {
     switch (type) {
       case "promotion":
         return (
@@ -187,7 +191,7 @@ export default function AnnouncementsPage() {
   };
 
   // Get badge styles based on type
-  const getBadgeStyles = (type) => {
+  const getBadgeStyles = (type: string) => {
     switch (type) {
       case "promotion":
         return "bg-purple-100 text-purple-800";

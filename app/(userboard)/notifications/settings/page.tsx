@@ -36,15 +36,15 @@ export default function NotificationSettingsPage() {
   });
 
   // Handle toggle change
-  const handleToggle = (setting) => {
+  const handleToggle = (setting: string) => {
     setSettings({
       ...settings,
-      [setting]: !settings[setting],
+      [setting]: !settings[setting as keyof typeof settings],
     });
   };
 
   // Handle select change
-  const handleSelectChange = (e) => {
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSettings({
       ...settings,
       frequency: e.target.value,

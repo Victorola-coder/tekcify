@@ -151,7 +151,9 @@ export default function TicketHistoryPage() {
               type="text"
               placeholder="Search tickets..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setSearchQuery(e.target.value)
+              }
               className="w-full py-2 pl-10 pr-4 border-seance/20 bg-background focus:outline-none focus:ring-1 focus:ring-purpleHeart"
             />
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

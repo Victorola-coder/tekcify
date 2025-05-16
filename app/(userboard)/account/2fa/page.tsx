@@ -143,7 +143,9 @@ export default function TwoFactorAuthPage() {
                   <form onSubmit={handleVerifyCode} className="space-y-4">
                     <Input
                       value={verificationCode}
-                      onChange={(e) => setVerificationCode(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setVerificationCode(e.target.value)
+                      }
                       placeholder="Enter 6-digit code"
                       maxLength={6}
                       className="max-w-xs font-mono text-lg tracking-widest"

@@ -138,7 +138,9 @@ export default function HelpArticlesPage() {
           type="text"
           placeholder="Search help articles..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setSearchQuery(e.target.value)
+          }
           className="w-full py-3 pl-10 pr-4 border-seance/20 bg-background focus:outline-none focus:ring-2 focus:ring-purple-600"
         />
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

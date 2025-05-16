@@ -147,7 +147,7 @@ export default function ProductUpdatesPage() {
   });
 
   // Get product badge style
-  const getProductBadge = (product) => {
+  const getProductBadge = (product: string) => {
     switch (product) {
       case "binx":
         return "bg-purpleHeart/10 text-purpleHeart";
@@ -163,7 +163,7 @@ export default function ProductUpdatesPage() {
   };
 
   // Get product display name
-  const getProductName = (product) => {
+  const getProductName = (product: string) => {
     switch (product) {
       case "binx":
         return "Binx AI";

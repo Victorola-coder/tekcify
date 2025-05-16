@@ -99,10 +99,10 @@ export default function NotificationsPage() {
   });
 
   // Format date
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const now = new Date();
-    const diffTime = Math.abs(now - date);
+    const diffTime = Math.abs(now.getTime() - date.getTime());
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
     if (diffDays === 0) {
@@ -121,7 +121,7 @@ export default function NotificationsPage() {
   };
 
   // Get icon based on notification type
-  const getIcon = (type, read) => {
+  const getIcon = (type: string, read: boolean) => {
     const opacity = read ? "text-foreground/50" : "text-foreground";
 
     switch (type) {

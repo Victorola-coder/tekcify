@@ -4,12 +4,29 @@ import { useState } from "react";
 import { Button, Card } from "@/app/components/ui";
 import Link from "next/link";
 
+// Define activity type
+interface Activity {
+  id: number;
+  type: "login" | "product" | "profile" | "billing";
+  description: string;
+  ipAddress: string;
+  date: string;
+  product: string | null;
+  location?: string;
+  success?: boolean;
+}
+
+// Define grouped activities type
+interface GroupedActivities {
+  [key: string]: Activity[];
+}
+
 export default function ActivityPage() {
   const [activeTab, setActiveTab] = useState("all");
   const [dateFilter, setDateFilter] = useState("all");
 
   // Activity data
-  const activities = [
+  const activities: Activity[] = [
     {
       id: 1,
       type: "login",
@@ -168,7 +185,7 @@ export default function ActivityPage() {
   });
 
   // Format date
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleString("en-US", {
       month: "short",
@@ -181,24 +198,27 @@ export default function ActivityPage() {
   };
 
   // Group activities by date
-  const groupedActivities = filteredActivities.reduce((groups, activity) => {
-    const date = new Date(activity.date);
-    const dateKey = date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
+  const groupedActivities = filteredActivities.reduce<GroupedActivities>(
+    (groups, activity) => {
+      const date = new Date(activity.date);
+      const dateKey = date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
 
-    if (!groups[dateKey]) {
-      groups[dateKey] = [];
-    }
+      if (!groups[dateKey]) {
+        groups[dateKey] = [];
+      }
 
-    groups[dateKey].push(activity);
-    return groups;
-  }, {});
+      groups[dateKey].push(activity);
+      return groups;
+    },
+    {}
+  );
 
   // Get icon based on activity type
-  const getIcon = (activity) => {
+  const getIcon = (activity: Activity) => {
     switch (activity.type) {
       case "login":
         return (

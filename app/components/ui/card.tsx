@@ -7,7 +7,7 @@ export default function Card({
 }) {
   return (
     <div
-      className={`bg-[#FFFFFF] rounded-[24px] p-5 animate-float ${className}`}
+      className={`bg-background rounded-[24px] p-5 animate-float ${className}`}
     >
       {children}
     </div>

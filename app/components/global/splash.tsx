@@ -21,9 +21,11 @@ export default function Splash() {
     theme === "dark" ? "/images/brand/dark.png" : "/images/brand/white.png";
 
   return (
-    <div className="w-full h-svh flex relative flex-col gap-5 items-center justify-center bg-gradient-to-r from-purpleHeart to-seance text-white">
+    <div className="w-full h-svh flex relative flex-col gap-5 items-center justify-center bg-gradient-to-r from-purpleHeart to-seance">
       <Image src={logoSrc} alt="Tekcify" width={100} height={100} />
-      <h1 className="text-[16px] font-aki font-extrabold block">Tekcify</h1>
+      <h1 className="text-[16px] font-aki font-extrabold block text-white">
+        Tekcify
+      </h1>
     </div>
   );
 }

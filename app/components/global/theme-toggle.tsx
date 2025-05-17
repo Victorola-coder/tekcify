@@ -33,7 +33,7 @@ export default function ThemeToggle() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-white"
+          className="text-foreground"
         >
           <circle cx="12" cy="12" r="4" />
           <path d="M12 2v2" />
@@ -56,7 +56,7 @@ export default function ThemeToggle() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-black"
+          className="text-foreground"
         >
           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
         </svg>

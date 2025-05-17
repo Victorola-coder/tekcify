@@ -1,5 +1,23 @@
 import clsx from "clsx";
 
+interface ButtonProps {
+  loading?: boolean;
+  noDefault?: boolean;
+  className?: string;
+  onClick?: () => void;
+  children?: React.ReactNode;
+  disabled?: boolean;
+  size?: "default" | "sm" | "lg";
+  variant?:
+    | "default"
+    | "secondary"
+    | "danger"
+    | "primary"
+    | "google"
+    | "outline";
+  [key: string]: any;
+}
+
 export default function Button(props: ButtonProps) {
   const {
     loading,
@@ -26,7 +44,8 @@ export default function Button(props: ButtonProps) {
           "px-6 py-3 text-lg": size === "lg",
           "bg-gradient-to-r from-primary-100 to-primary rounded-[10px]  text-white":
             variant === "default",
-          "bg-[#FFFFFF] text-black rounded-[16px]": variant === "secondary",
+          "bg-background text-foreground rounded-[16px] border border-seance/20":
+            variant === "secondary",
           "bg-red-500/10 hover:bg-red-500/20 text-red-500":
             variant === "danger",
           "bg-[#6B39FF] hover:bg-[#6B39FF]/80 rounded-[12px] active:bg-[#6B39FF]/90 text-white":
